@@ -2,12 +2,12 @@ import React from 'react';
 import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
 
 
-const RenderComments = ({dish}) => {
-    if (dish != null) {
+const RenderComments = ({comments}) => {
+    if (comments != null) {
         return (
             <div>
                 <h4>Comments</h4>
-                {dish.comments.map(comment => {
+                {comments.map(comment => {
                     return (
                         <ul key={comment.id} className="list-unstyled">
                             <li>{comment.comment}</li>
@@ -55,7 +55,7 @@ const dishdetail = (props) => {
                     <RenderDish dish={props.dish}/>
                 </div>
                 <div className="col-12 col-md-5 m-1">
-                    <RenderComments dish={props.dish}/>
+                    <RenderComments dish={props.comments}/>
                 </div>
             </div>
         </div>

@@ -28,6 +28,7 @@ class Main extends Component {
 
   
   render() {
+    console.log(this.props.match);
 
     const HomePage=()=>{
       return(
@@ -36,13 +37,25 @@ class Main extends Component {
         leader={this.state.leaders.filter((leader) => leader.featured)[0]} />
       );
     }
+
+    const DishWithId=(props)=>{
+      console.log(props);
+      return(
+        <DishDetail dish={this.state.dishes.filter(dish=>dish.id===parseInt(props.match.params.dishId,10))[0]}
+        comments={this.state.comments.filter((comment) => comment.dishId === parseInt(props.match.params.dishId,10))}>
+
+        </DishDetail>
+      )
+    }
     return (
+    
       <div className="App">
         
         <Header></Header>
           <Switch>
             <Route path='/home' component={HomePage}/>
-            <Route path='/menu' component={()=> <Menu dishes={this.state.dishes}></Menu>} />
+            <Route exact path='/menu' component={()=> <Menu dishes={this.state.dishes}></Menu>} />
+            <Route path='/menu/:dishId' component={DishWithId}></Route>
             <Route path='/contactus' component={Contact}/>
             <Redirect to='/home'></Redirect>
           </Switch>
