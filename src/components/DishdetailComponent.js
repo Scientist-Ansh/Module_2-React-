@@ -3,7 +3,7 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 're
 import CommentForm from './CommentForm';
 
 
-const RenderComments = ({comments}) => {
+const RenderComments = ({comments,addComment,dishId}) => {
     if (comments != null) {
         return (
             <div>
@@ -18,7 +18,7 @@ const RenderComments = ({comments}) => {
                         </ul>
                     )
                 })}
-                <CommentForm/>
+                <CommentForm dishId={dishId} addComment={addComment}/>
             </div>
 
         )
@@ -28,7 +28,7 @@ const RenderComments = ({comments}) => {
         return(
         <div>
             <h2>NO comments</h2>
-            <CommentForm/>
+            <CommentForm dishId={dishId} addComment={addComment}/>
         </div>)
     }   
 
@@ -61,7 +61,9 @@ const dishdetail = (props) => {
                     <RenderDish dish={props.dish}/>
                 </div>
                 <div className="col-12 col-md-5 m-1">
-                    <RenderComments comments={props.comments}/>
+                    <RenderComments comments={props.comments}
+                    addComment={props.addComment}
+                    dishId={props.dish.id}/>
                 </div>
             </div>
         </div>
