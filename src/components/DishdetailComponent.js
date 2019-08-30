@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
+import CommentForm from './CommentForm';
 
 
 const RenderComments = ({comments}) => {
@@ -17,14 +18,19 @@ const RenderComments = ({comments}) => {
                         </ul>
                     )
                 })}
+                <CommentForm/>
             </div>
 
         )
 
     }
     else{
-        return(<div></div>)
-    }
+        return(
+        <div>
+            <h2>NO comments</h2>
+            <CommentForm/>
+        </div>)
+    }   
 
 }
 
@@ -47,7 +53,7 @@ const RenderDish = ({dish}) => {
 
 const dishdetail = (props) => {
     
-    
+    console.log(props);
     return (
         <div className="container">
             <div className="row">
@@ -55,7 +61,7 @@ const dishdetail = (props) => {
                     <RenderDish dish={props.dish}/>
                 </div>
                 <div className="col-12 col-md-5 m-1">
-                    <RenderComments dish={props.comments}/>
+                    <RenderComments comments={props.comments}/>
                 </div>
             </div>
         </div>
