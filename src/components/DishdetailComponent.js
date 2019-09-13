@@ -5,7 +5,7 @@ import {Loading} from './LoadingComponent';
 import {baseUrl} from '../shared/baseUrl';
 
 
-const RenderComments = ({comments,addComment,dishId}) => {
+const RenderComments = ({comments,postComment,dishId}) => {
     if (comments != null) {
         return (
             <div>
@@ -20,7 +20,7 @@ const RenderComments = ({comments,addComment,dishId}) => {
                         </ul>
                     )
                 })}
-                <CommentForm dishId={dishId} addComment={addComment}/>
+                <CommentForm dishId={dishId} postComment={postComment}/>
             </div>
 
         )
@@ -30,7 +30,7 @@ const RenderComments = ({comments,addComment,dishId}) => {
         return(
         <div>
             <h2>NO comments</h2>
-            <CommentForm dishId={dishId} addComment={addComment}/>
+            <CommentForm dishId={dishId} postComment={postComment}/>
         </div>)
     }   
 
@@ -81,7 +81,7 @@ const dishdetail = (props) => {
                     </div>
                     <div className="col-12 col-md-5 m-1">
                         <RenderComments comments={props.comments}
-                        addComment={props.addComment}
+                        postComment={props.postComment}
                         dishId={props.dish.id}/>
                     </div>
                 </div>
