@@ -1,14 +1,40 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
-
+import {Loading} from './LoadingComponent';
+import {baseUrl} from '../shared/baseUrl';
+import {Fade,Stagger} from 'react-animation-components'
 const RenderLeader=({leaders})=>{
+    if(leaders.isLoading){
+        return(
+            <div className="container">
+                <div className="row"> 
+                                
+                        <Loading />
+                    </div>
+            </div>
+        )
+    }
+    else if (leaders.errmess){
+        return(
+            <div className="container">
+                <div className="row"> 
+                    <div className="col-12">
+                        <h4>{leaders.errmess}</h4>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+    else
     return (
-        leaders.map(leader=>{
+        <Stagger in>
+        {leaders.leaders.map(leader=>{
             return(
+                <Fade in>
                 <Media key={leader.id} className="mb-5">
             <Media left href="#" className="mr-5">
-                <Media object src={leader.image} alt="Generic placeholder image" />
+                <Media object src={baseUrl+leader.image} alt="Generic placeholder image" />
             </Media>
             <Media body>
                 <Media heading>
@@ -18,8 +44,12 @@ const RenderLeader=({leaders})=>{
                 {leader.description}
             </Media>
         </Media>
+        </Fade>
             )
-        })
+        })}
+        
+        </Stagger>
+        
         
     );
 }
@@ -83,9 +113,13 @@ const about =(props)=>{
                     <h2 className="mb-5">Corporate Leadership</h2>
                 </div>
                 <div className="col-12">
+                    
                     <Media list>
+                    
                         <RenderLeader leaders={props.leaders}></RenderLeader>
+                       
                     </Media>
+                    
                 </div>
             </div>
         </div>

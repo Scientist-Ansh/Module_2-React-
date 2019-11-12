@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 import CommentForm from './CommentForm';
 import {Loading} from './LoadingComponent';
 import {baseUrl} from '../shared/baseUrl';
@@ -14,7 +14,7 @@ const RenderComments = ({comments,postComment,dishId}) => {
                 <Stagger in>
                 {comments.map(comment => {
                     return (
-                        <Fade in>
+                        <Fade in key={comment.id}>
                         <ul key={comment.id} className="list-unstyled">
                             <li>{comment.comment}</li>
                             <br></br>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Modal, ModalBody, ModalHeader,Button,Label,Row,Col} from 'reactstrap';
+import {Modal, ModalBody, ModalHeader,Button,Label} from 'reactstrap';
 import {LocalForm,Control,Errors} from 'react-redux-form';
 
 
